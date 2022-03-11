@@ -16,11 +16,15 @@ public class BeerSelect extends HttpServlet {
         String color = request.getParameter("color");
         BeerExpert expert = new BeerExpert();
         List advices = expert.getBrands(color);
-        writer.println("<br>Got beer color " + color);
-        String advice = "";
-        Iterator iterator = advices.iterator();
-        while ((advice = (String) iterator.next()) != null) {
-            writer.println(advice + "<br>");
-        }
+        // writer.println("<br>Got beer color " + color);
+        // String advice = "";
+        // Iterator iterator = advices.iterator();
+        // while ((advice = (String) iterator.next()) != null) {
+        // writer.println(advice + "<br>");
+        // }
+        request.setAttribute("styles", advices);
+        RequestDispatcher view = request.getRequestDispatcher("beer-advice.jsp");
+        view.forward(request, response);
+
     }
 }
